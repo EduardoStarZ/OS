@@ -18,6 +18,7 @@ public class Shell {
     private boolean echo = true;
     private String displayFolder = "~";
     private ArrayList<String> folderPathname = new ArrayList<>();
+    Functions function = new Functions("", info[0], info[1]);
 
     /**
      * <p>A initializer to the Shell Class</p>
@@ -66,7 +67,7 @@ public class Shell {
      * 
      * @since 1.0.0
      */
-    class Input{
+    
 
         /**
          * <p>A method that receives user input
@@ -83,14 +84,7 @@ public class Shell {
             out.print("\n");
             return input.split(" ");
         }   
-    }
-
-    /**
-     * <p>A subclass of Shell that contains every method related to user output</p>
-     * 
-     * @since 1.0.0
-     */
-    class Output{
+    
 
         /**
          * <p>A method that uses the string parameter to print the information
@@ -122,7 +116,6 @@ public class Shell {
         public void restartLine() {
             out.print("\r");
         }
-    }
 
     public static void main(String[] args) {
         Shell shell = new Shell("EduardoStarZ", "debianLinux");
@@ -132,7 +125,10 @@ public class Shell {
             Command.execute(shell, method);
         } catch (NoSuchMethodException | SecurityException e) {
             e.printStackTrace();
+        
         }
+
+        shell.function.listItems();
     }
 }
 
