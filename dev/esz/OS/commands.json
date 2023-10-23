@@ -1,0 +1,5 @@
+{
+    "cd" : "changeFolder",
+    "echo": "echo",
+    "ls": "listContents"
+}
