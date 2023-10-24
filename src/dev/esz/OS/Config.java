@@ -1,6 +1,11 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.Scanner;
+
 public class Config {
-    private final String user;
-    private final String system;
+    private final String user = " ";
+    private final String system = System.getProperty("os.name");
     protected boolean echo;
 
     /**
@@ -12,10 +17,29 @@ public class Config {
      * 
      * @since 1.0.0
      */
-    public Config(String user) {
-        this.user = user;
-        this.system = System.getProperty("os.name");
-        echo = true;
+    public Config() {
+
+        File config = new File("config.json");
+        try {
+            Scanner scanner = new Scanner(config);
+            String content = "";
+            
+            while(scanner.hasNext()) {
+                content += scanner.nextLine();
+            }
+
+            content = content
+            .replace("{","")
+            .replace("}", "")
+            .replace(",", "")
+            .replace("\"", "");
+
+            String user = " ";
+            echo = true;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
     }
 
     /**
@@ -29,10 +53,8 @@ public class Config {
      * 
      * @since 1.0.0
      */
-    public Config(String user, boolean echo) {
-        this.user = user;
+    public Config(boolean echo) {
         this.echo = echo;
-        this.system = System.getProperty("os.name");
     }
 
     public String getUser() {
@@ -41,5 +63,9 @@ public class Config {
 
     public String getSystem() {
         return system;
+    }
+
+    public String getDefaultStartingDirectory() {
+        return " ";
     }
 }

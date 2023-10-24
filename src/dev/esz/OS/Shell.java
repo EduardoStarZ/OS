@@ -16,10 +16,10 @@ import java.io.File;
  */
 public class Shell {
 
-    private Config config = new Config("EduardoStarZ");
     private static Scanner scanner = new Scanner(System.in);
     private String displayFolder = "~";
     private ArrayList<File> folders = new ArrayList<>();
+    private Config config = new Config();
 
     /**
      * <p>
