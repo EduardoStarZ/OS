@@ -14,12 +14,12 @@ import java.lang.reflect.Method;
 public class Shell {
     
     private static Scanner scanner = new Scanner(System.in);
-    private final String[] info = new String[2];
+    private final String user;
+    private final String system;
     private boolean echo = true;
     private String displayFolder = "~";
     private ArrayList<String> folderPathname = new ArrayList<>();
-    Functions function = new Functions("", info[0], info[1]);
-
+    
     /**
      * <p>A initializer to the Shell Class</p>
      * 
@@ -28,9 +28,9 @@ public class Shell {
      * 
      * @since 1.0.0
      */
-    public Shell(String user, String system) {
-        this.info[0] = user;
-        this.info[1] = system;
+    public Shell(String user) {
+        this.user = user;
+        this.system = System.getProperty("os.name");
     }
 
     /**
@@ -42,10 +42,10 @@ public class Shell {
      * 
      * @since 1.0.0
      */
-    public Shell(String user, String system, boolean echo) {
+    public Shell(String user, boolean echo) {
+        this.user = user;
         this.echo = echo;
-        this.info[0] = user;
-        this.info[1] = system;
+        this.system = System.getProperty("os.name");
     }
 
     /**
@@ -76,7 +76,7 @@ public class Shell {
          */
         public String[] read() {
             if(echo) {
-                out.print("\u001B[34m"+ info[0] + "@" + info[1] + ":\u001B[32m" + displayFolder + "> $"+" \u001B[37m");
+                out.print("\u001B[34m"+ user + "@" + system + ":\u001B[32m" + displayFolder + "> $"+" \u001B[37m");
             }
 
             String input = scanner.nextLine();
@@ -118,7 +118,7 @@ public class Shell {
         }
 
     public static void main(String[] args) {
-        Shell shell = new Shell("EduardoStarZ", "debianLinux");
+        Shell shell = new Shell("EduardoStarZ");
 
         try {
             Method method = Shell.class.getMethod("read");
@@ -127,8 +127,6 @@ public class Shell {
             e.printStackTrace();
         
         }
-
-        shell.function.listItems();
     }
 }
 
