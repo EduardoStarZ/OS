@@ -1,11 +1,13 @@
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.Scanner;
 
 public class Config {
-    private final String user = " ";
+    private String user;
     private final String system = System.getProperty("os.name");
+    private final String parameter = SearchEngine.configSearch("ParameterDeclaration", "config.json");
     protected boolean echo;
 
     /**
@@ -17,34 +19,11 @@ public class Config {
      * 
      * @since 1.0.0
      */
-    public Config() {
-
-        File config = new File("config.json");
-        try {
-            Scanner scanner = new Scanner(config);
-            String content = "";
-            
-            while(scanner.hasNext()) {
-                content += scanner.nextLine();
-            }
-
-            content = content
-            .replace("{","")
-            .replace("}", "")
-            .replace(",", "")
-            .replace("\"", "");
-
-            String user = " ";
-            echo = true;
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-    }
+    public Config() {}
 
     /**
      * <p>
-     * A initializer to the Shell Class
+     * A initializer to the Config Class
      * </p>
      * 
      * @param user   used to display the user of the shell program
@@ -65,7 +44,21 @@ public class Config {
         return system;
     }
 
-    public String getDefaultStartingDirectory() {
-        return " ";
+    public static String getNativeConfigFile() {
+        File config = new File("Native.json");
+        String content = "";
+        try {
+            Scanner scanner = new Scanner(config);
+
+            while(scanner.hasNextLine()) {
+                content += scanner.nextLine(); 
+            }
+
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return content;
     }
 }

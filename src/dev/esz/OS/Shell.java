@@ -18,7 +18,6 @@ public class Shell {
 
     private static Scanner scanner = new Scanner(System.in);
     private String displayFolder = "~";
-    private ArrayList<File> folders = new ArrayList<>();
     private Config config = new Config();
 
     /**
@@ -32,18 +31,6 @@ public class Shell {
      * @since 1.0.0
      */
     public Shell() {}
-
-    /**
-     * 
-     * @param folder a pathname that points to a directory location
-     * 
-     * @since 1.0.0
-     */
-    private void changeFolder(File folder) {
-        this.displayFolder = "~\\" + folder.getAbsolutePath();
-
-        folders.add(folder);
-    }
 
     /**
      * <p>
@@ -110,8 +97,9 @@ public class Shell {
     }
 
     public static void main(String[] args) {
-        // Shell shell = new Shell();
+        Shell shell = new Shell();
 
+        shell.read();
         // try {
         // Method method = Shell.class.getMethod("read");
         // Command.execute(shell, method);
@@ -121,30 +109,4 @@ public class Shell {
         // }
     }
 }
-
-/**
- * <p>
- * A class external to shell that will be used for modularly executing Java code
- * 
- * @since 1.0.0
- */
-class Command {
-
-    /**
-     * <p>
-     * A method that gets another method and runs it through the use of the
-     * reflection library
-     * 
-     * @param object an object to be used in the method
-     * @param method the actual method being ran
-     */
-    static void execute(Object object, Method method) {
-        try {
-            method.invoke(object);
-        } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-            e.printStackTrace();
-        }
-    }
-}
-
 // "\u001B[31mRed text"
