@@ -25,9 +25,9 @@ public class Native {
         return Native.class.getMethod("changeDirectory", String.class);
     } 
 
-    public void changeDirectory(String newDirectory) {
-        if(!fileSystem.changeDirectory(newDirectory)) {
-            shell.writeln("\u001B[34m The folder \""+ newDirectory + "\" couldn't be found");
+    public void changeDirectory(String[] args) {
+        if(!fileSystem.changeDirectory(args[0])) {
+            shell.writeln("\u001B[34m The folder \""+ args[0] + "\" couldn't be found");
         }
         else{
             return;
