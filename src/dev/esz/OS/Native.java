@@ -4,7 +4,6 @@ public class Native {
     FileSystem fileSystem = new FileSystem();
     Shell shell = new Shell();
 
-
     public Method listItemsInit() throws NoSuchMethodException, SecurityException {
         return Native.class.getMethod("listItems");
     }

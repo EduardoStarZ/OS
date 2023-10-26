@@ -6,4 +6,8 @@ public class Processors {
                 .replace("\"", "")
                 .replace(" ", "");
     }
+
+    public static String[] args(String content) {
+        return content.split(" ");
+    }
 }
