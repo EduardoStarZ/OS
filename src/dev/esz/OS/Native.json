@@ -1,8 +1,8 @@
 {
-    "cd" : "changeDirectoryInit",
-    "echo": "echoInit",
-    "ls": "listItemsInit",
-    "touch": "createFileInit",
-    "mkdir": "makeDirectoryInit",
-    "mkdirs": "makeDirectoriesInit"
+    "cd" : "changeDirectory",
+    "echo": "echo",
+    "ls": "listItems",
+    "touch": "createFile",
+    "mkdir": "makeDirectory",
+    "mkdirs": "makeDirectories"
 }

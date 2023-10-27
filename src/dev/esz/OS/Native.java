@@ -1,12 +1,6 @@
-import java.lang.reflect.Method;
-
 public class Native {
     FileSystem fileSystem = new FileSystem();
     Shell shell = new Shell();
-
-    public Method listItemsInit() throws NoSuchMethodException, SecurityException {
-        return Native.class.getMethod("listItems");
-    }
 
     public void listItems() {
         String[] contents = fileSystem.listDirectoryObjects();
@@ -19,10 +13,6 @@ public class Native {
             }
         }
     }
-    
-    public Method changeDirectoryInit() throws NoSuchMethodException, SecurityException {
-        return Native.class.getMethod("changeDirectory", String.class);
-    } 
 
     public void changeDirectory(String[] args) {
         if(!fileSystem.changeDirectory(args[0])) {

@@ -30,14 +30,6 @@ public class Shell {
 
     /**
      * <p>
-     * A subclass of Shell that contains every method related to user input
-     * </p>
-     * 
-     * @since 1.0.0
-     */
-
-    /**
-     * <p>
      * A method that receives user input
      * 
      * @return An array of strings containing the arguments inputed
@@ -86,10 +78,6 @@ public class Shell {
      */
     public void restartLine() {
         out.print("\r");
-    }
-
-    public void processArguments(String[] args) {
-        
     }
 
     public static void main(String[] args) {

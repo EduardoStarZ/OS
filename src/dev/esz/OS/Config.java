@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class Config {
     private String user;
     private final String system = System.getProperty("os.name");
-    private final String parameter = SearchEngine.configSearch("ParameterDeclaration", "config.json");
     protected boolean echo;
 
     /**
@@ -17,7 +16,9 @@ public class Config {
      * 
      * @since 1.0.0
      */
-    public Config() {}
+    public Config() {
+        this.echo = true;
+    }
 
     /**
      * <p>
