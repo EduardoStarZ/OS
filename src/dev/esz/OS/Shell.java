@@ -14,7 +14,7 @@ public class Shell {
 
     private static Scanner scanner = new Scanner(System.in);
     private String displayFolder = "~";
-    private Config config = new Config();
+    public Config config = new Config();
 
     /**
      * <p>
@@ -34,7 +34,7 @@ public class Shell {
      * 
      * @return An array of strings containing the arguments inputed
      */
-    public String[] read() {
+    public String read() {
         if (config.echo) {
             out.print("\u001B[34m" + config.getUser() + "@" + config.getSystem() + ":\u001B[32m" + displayFolder + "> $" + " \u001B[37m");
         }
@@ -42,7 +42,7 @@ public class Shell {
         String input = scanner.nextLine();
 
         out.print("\n");
-        return input.split(" ");
+        return input;
     }
 
     /**
@@ -78,19 +78,6 @@ public class Shell {
      */
     public void restartLine() {
         out.print("\r");
-    }
-
-    public static void main(String[] args) {
-        Shell shell = new Shell();
-
-        shell.read();
-        // try {
-        // Method method = Shell.class.getMethod("read");
-        // Command.execute(shell, method);
-        // } catch (NoSuchMethodException | SecurityException e) {
-        // e.printStackTrace();
-
-        // }
     }
 }
 // "\u001B[31mRed text"

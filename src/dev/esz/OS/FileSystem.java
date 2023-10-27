@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class FileSystem {
@@ -47,5 +48,30 @@ public class FileSystem {
         }
 
         return (String[]) contents.toArray();
+    }
+
+    public boolean createFile(String filePathname) {
+        File file = new File(filePathname);
+
+        if(!file.exists()) {
+            try {
+                return file.createNewFile();
+            } catch (IOException e) {
+                return false;
+            }
+        }
+        return false;
+    }
+
+    public boolean makeDirectory(String directoryName) {
+        File folder = new File(directoryName);
+
+        return folder.mkdir();
+    }
+
+    public boolean makeDirectories(String directorySequence) {
+        File folders = new File(directorySequence);
+
+        return folders.mkdirs();
     }
 }

@@ -4,13 +4,19 @@ import java.lang.reflect.Method;
 public class ShellRunner{
 
     String config = Config.getNativeConfigFile();
+    Native nat = new Native(); 
 
     public void execute(String command, Object[] parameters) {
         String runnableMethod = SearchEngine.configSearch(command, "Native.json");
+        //TODO find why the method happens to only return "/"
+
+        System.out.println(runnableMethod);
+
+        nat.get.args = parameters;
 
         try {
-            Method method = Native.class.getMethod(runnableMethod);
-            run(new ShellRunner(), method, parameters);
+            Method method = Native.class.getMethod("listItems");
+            run(nat, method);
         } catch (NoSuchMethodException | SecurityException e) {
             e.printStackTrace();
         }
@@ -24,9 +30,13 @@ public class ShellRunner{
      * @param object an object to be used in the method
      * @param method the actual method being ran
      */
-    private void run(Object object, Method method, Object[] args) {
+    private void run(Object object, Method method) {
         try {
-            method.invoke(object, args[0], args[1], args[2]);
+            Object[] param = new Object[1];
+            param[0] = null; 
+            method.invoke(object, param);
+
+            //TODO find cause of argument number mismatch
         } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
             e.printStackTrace();
         }

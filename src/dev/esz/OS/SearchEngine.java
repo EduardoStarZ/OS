@@ -19,7 +19,6 @@ public class SearchEngine {
                 while(scanner.hasNext()) {
                     content = scanner.nextLine();
                     Matcher matcher = pattern.matcher(content);
-                    scanner.close();
 
                     if(matcher.matches()) {
                         return content.split(":")[1];
