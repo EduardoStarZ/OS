@@ -5,14 +5,15 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SearchEngine {
-    public static String configSearch(String configName, String configFilePathname) {
+    public static String configSearch(String configName, String configFilePathname) throws FileNotFoundException {
             Pattern pattern = Pattern.compile(configName);
             
             File config = new File(configFilePathname);
+            String content = "";
 
-            try {
+            //TODO found out that this method somewhy always returns the last string of the native config file, fix this later
+
                 Scanner scanner = new Scanner(config);
-                String content = "";
                 
                 content = Processors.jsonConfig(content);
                 
@@ -20,15 +21,12 @@ public class SearchEngine {
                     content = scanner.nextLine();
                     Matcher matcher = pattern.matcher(content);
 
-                    if(matcher.matches()) {
-                        return content.split(":")[1];
+                    if(matcher.find()) {
+                        content = content.split(":")[1];
                     }
                 }
 
                 scanner.close();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-                return "\\";    
+                return content;    
     }
 }

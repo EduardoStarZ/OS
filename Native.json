@@ -1,8 +1,0 @@
-{
-    "ls": "listItems",
-    "cd" : "changeDirectory",
-    "echo": "echo",
-    "touch": "createFile",
-    "mkdir": "makeDirectory",
-    "mkdirs": "makeDirectories"
-}

@@ -3,7 +3,7 @@ public class Processors {
         return content.replace("{","")
                 .replace("}", "")
                 .replace(",", "")
-                .replace("\"", "")
+                .replace('"', ' ')
                 .replace(" ", "");
     }
 
@@ -25,8 +25,7 @@ public class Processors {
     }
 
     public static String pathname(String content) {
-        return content.replace("\\", "/")
-        .replace("/", "\\\\")
+        return content.replace("/", "\\\\")
         .replace("\"", "");
     }
 }
