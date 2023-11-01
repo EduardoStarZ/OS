@@ -21,12 +21,33 @@ public class SearchEngine {
                     content = scanner.nextLine();
                     Matcher matcher = pattern.matcher(content);
 
-                    if(matcher.find()) {
+                    if(matcher.matches()) {
                         content = content.split(":")[1];
                     }
                 }
 
                 scanner.close();
                 return content;    
+    }
+
+    public static String nativeSearch(String methodName) throws FileNotFoundException {
+        File file = new File("Native.commands");
+        Scanner scanner = new Scanner(file);
+
+        while(scanner.hasNextLine()) {
+            String content = scanner.nextLine();
+
+            int startIndex = content.indexOf("[");
+            int endingIndex = content.indexOf("]");
+
+            String target = content.substring(startIndex, endingIndex);
+
+            if(content.equals(methodName)) {
+                startIndex = content.indexOf("(");
+                endingIndex = content.indexOf(")");
+                
+                return content.substring(startIndex, endingIndex);
+            }
+        }
     }
 }
